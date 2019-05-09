@@ -653,3 +653,5 @@ venv/Scripts/pip.exe.manifest
 venv/Scripts/pip3-script.py
 venv/Lib/site-packages/pip-19.1.dist-info/entry_points.txt
 .idea/workspace.xml
+.idea/workspace.xml
+*.xml
