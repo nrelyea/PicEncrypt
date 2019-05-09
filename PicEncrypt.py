@@ -17,13 +17,13 @@ def reformat_binary(s):
     return binary_list
 
 
-def bin2text(s): return "".join([chr(int(s[i:i+8],2)) for i in range(0,len(s),8)])
+def bin2text(s): return "".join([chr(int(s[i:i+8], 2)) for i in range(0, len(s), 8)])
 
 
 def output(s): return ctypes.windll.user32.MessageBoxW(0, s, "Error", 1)
 
 
-img = cv2.imread('babbybeagle.jpg')
+img = cv2.imread('BabbyBeagle.png')
 
 height, width = img.shape[:2]
 
@@ -58,7 +58,7 @@ if len(binary_list) > maxBitCount:
     output("Message is too large to be encoded in this image!\n\nMessage is " + str(len(binary_list)) + " bytes, Max is " + str(maxBitCount) + " bytes")
     sys.exit()
 
-showEncodedSection = True
+showEncodedSection = False
 
 f = open("binary.txt", "w")
 f.write(str_binary)
@@ -76,9 +76,13 @@ for i in range(0, height):
         # print("encoding ", binary_list[byte][bit])
 
         if img[i][j][0] % 2 == 0 and int(binary_list[byte][bit]) == 1:
+            print(img[i][j][0], "->")
             img[i][j][0] += 1
+            print(img[i][j][0])
         elif img[i][j][0] % 2 == 1 and int(binary_list[byte][bit]) == 0:
+            print(img[i][j][0], "->")
             img[i][j][0] += 1
+            print(img[i][j][0])
         bit += 1
         if bit == 7:
             bit = 0
@@ -88,6 +92,7 @@ for i in range(0, height):
     if byte > len(binary_list) - 1:
         break
 
+print("origin: ", img[0][0][0])
 
 cv2.imshow('image', img)
 
