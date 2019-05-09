@@ -60,10 +60,6 @@ if len(binary_list) > maxBitCount:
 
 showEncodedSection = False
 
-f = open("binary.txt", "w")
-f.write(str_binary)
-f.close()
-
 byte = 0
 bit = 0
 
@@ -76,13 +72,9 @@ for i in range(0, height):
         # print("encoding ", binary_list[byte][bit])
 
         if img[i][j][0] % 2 == 0 and int(binary_list[byte][bit]) == 1:
-            print(img[i][j][0], "->")
             img[i][j][0] += 1
-            print(img[i][j][0])
         elif img[i][j][0] % 2 == 1 and int(binary_list[byte][bit]) == 0:
-            print(img[i][j][0], "->")
             img[i][j][0] += 1
-            print(img[i][j][0])
         bit += 1
         if bit == 7:
             bit = 0
@@ -91,8 +83,6 @@ for i in range(0, height):
             break
     if byte > len(binary_list) - 1:
         break
-
-print("origin: ", img[0][0][0])
 
 cv2.imshow('image', img)
 
